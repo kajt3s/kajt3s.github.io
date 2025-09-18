@@ -5,25 +5,37 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Mój stream</title>
   <style>
-    html, body { margin:0; padding:0; font-family:sans-serif; }
+    html, body { margin:0; padding:0; font-family:sans-serif; text-align:center; }
     body { display:flex; flex-direction:column; align-items:center; }
+
     .player-wrap {
-      width: 640px;       /* początkowa szerokość */
-      height: 360px;      /* początkowa wysokość */
+      width: 90%;            /* maksymalna szerokość 90% ekranu */
+      max-width: 1200px;     /* nigdy większa niż 1200px */
+      height: 70vh;           /* 70% wysokości ekranu */
       border:1px solid #000;
-      resize: both;       /* włącz możliwość zmiany rozmiaru */
-      overflow: hidden;   /* ukryj scroll w iframe */
+      margin:auto;
+      overflow:hidden;
+      transition: height 0.2s; /* płynna zmiana wysokości */
     }
+
     .player-wrap iframe {
       width:100%;
       height:100%;
       border:0;
     }
-    h1 { text-align:center; }
+
+    .controls { margin: 15px; }
+    input[type=range] { width: 300px; }
   </style>
 </head>
 <body>
-  <h1>Stream test - możesz zmieniać okienko</h1>
+  <h1>Stream test - zmień wysokość okienka</h1>
+
+  <div class="controls">
+    <label for="heightRange">Wysokość (px): </label>
+    <input type="range" id="heightRange" min="200" max="700" value="70">
+    <span id="heightValue">70%</span>
+  </div>
 
   <div class="player-wrap" id="playerWrap">
     <iframe id="player"
@@ -33,6 +45,17 @@
       loading="lazy"></iframe>
   </div>
 
-  <p style="margin-top:10px;">Chwyć róg okienka i przeciągnij, aby zmienić rozmiar.</p>
+  <script>
+    const slider = document.getElementById('heightRange');
+    const playerWrap = document.getElementById('playerWrap');
+    const heightValue = document.getElementById('heightValue');
+
+    // Przeliczenie suwaka na procent wysokości ekranu
+    slider.addEventListener('input', () => {
+      const val = slider.value;           // 200-700 px
+      playerWrap.style.height = val + 'px';
+      heightValue.textContent = val + 'px';
+    });
+  </script>
 </body>
 </html>
