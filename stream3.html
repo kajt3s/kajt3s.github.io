@@ -57,17 +57,15 @@
       margin-bottom:20px;
     }
 
-    /* Kontener dla dwóch playerów obok siebie */
-    .players-row {
+    .player-container {
       display:flex;
       gap:20px;
-      justify-content:center;
+      justify-content: center;
       flex-wrap: wrap;
-      margin-bottom:20px;
     }
 
     .player-wrap {
-      width:49%;
+      width:48%;
       height:50vh;
       border-radius:12px;
       overflow:hidden;
@@ -110,22 +108,19 @@
       font-weight:bold;
     }
 
-    /* RESPONSYWNOŚĆ */
     @media (max-width: 1024px) {
-      .player-wrap { height:45vh; }
+      .player-wrap { height:40vh; width:48%; }
       header { flex-direction: column; height:auto; padding:10px; }
       nav { margin-top:8px; }
     }
 
     @media (max-width: 768px) {
-      .player-wrap { width:100%; height:40vh; }
+      .player-wrap { height:35vh; width:100%; }
       nav a { padding:6px 10px; font-size:14px; margin-left:4px; }
     }
 
     @media (max-width: 480px) {
       h1 { font-size:1.5rem; }
-      .player-wrap { width:100%; height:35vh; margin-bottom:15px; }
-      nav a { display:block; margin:4px 0; }
       .flashcore-box { display:none; }
     }
   </style>
@@ -142,20 +137,16 @@
 
   <main>
     <h1>🎬 wStream 3</h1>
-
-    <div class="players-row">
+    <div class="player-container">
       <div class="player-wrap">
-        <iframe src="https://strumyk.net/embed/114"
-          allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://flashcore.net/embed/111" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe>
       </div>
       <div class="player-wrap">
-        <iframe src="https://strumyk.net/embed/115"
-          allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://flashcore.net/embed/222" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe>
       </div>
     </div>
   </main>
 
-  <!-- OKIENKO FLASHSCORE -->
   <div class="flashcore-box">
     <a href="https://www.flashscore.pl/" target="_blank">Flashscore</a>
   </div>
