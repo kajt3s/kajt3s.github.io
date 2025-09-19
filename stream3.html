@@ -60,13 +60,13 @@
     .player-container {
       display:flex;
       gap:20px;
-      justify-content: center;
-      flex-wrap: wrap;
+      justify-content:center;
+      flex-wrap:wrap;
     }
 
     .player-wrap {
-      width:48%;
-      height:50vh;
+      width:48%;  /* szersze okienka */
+      height:85vh; /* wyższe okienka */
       border-radius:12px;
       overflow:hidden;
       background:#000;
@@ -78,7 +78,6 @@
       border:0;
     }
 
-    /* OKIENKO FLASHSCORE */
     .flashcore-box {
       position: fixed;
       top:50%;
@@ -109,18 +108,19 @@
     }
 
     @media (max-width: 1024px) {
-      .player-wrap { height:40vh; width:48%; }
+      .player-wrap { height:75vh; }
       header { flex-direction: column; height:auto; padding:10px; }
       nav { margin-top:8px; }
     }
 
     @media (max-width: 768px) {
-      .player-wrap { height:35vh; width:100%; }
+      .player-wrap { height:60vh; width:100%; }
       nav a { padding:6px 10px; font-size:14px; margin-left:4px; }
     }
 
     @media (max-width: 480px) {
       h1 { font-size:1.5rem; }
+      .player-wrap { height:40vh; width:100%; }
       .flashcore-box { display:none; }
     }
   </style>
@@ -139,10 +139,10 @@
     <h1>🎬 wStream 3</h1>
     <div class="player-container">
       <div class="player-wrap">
-        <iframe src="https://flashcore.net/embed/796" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe>
+        <iframe id="player1" src="https://strumyk.net/embed/796" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe>
       </div>
       <div class="player-wrap">
-        <iframe src="https://flashcore.net/embed/134" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe>
+        <iframe id="player2" src="https://strumyk.net/embed/134" allowfullscreen allow="encrypted-media; picture-in-picture"></iframe>
       </div>
     </div>
   </main>
@@ -156,5 +156,3 @@
   </script>
 </body>
 </html>
-
-
