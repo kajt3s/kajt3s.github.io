@@ -1,192 +1,167 @@
 <!doctype html>
 <html lang="pl">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>wStream — Wszystkie</title>
-<link rel="icon" type="image/png" href="wstream.png">
-<style>
-:root {
-  --bg-1:#0d0d0d;
-  --bg-2:#1a0026;
-  --accent:#a855f7;
-  --accent-2:#9333ea;
-  --text:#eae6f9;
-  --header-h:64px;
-}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>wStream — 3</title>
+  <link rel="icon" type="image/png" href="wstream.png">
+  <style>
+    :root {
+      --bg-1:#0d0d0d;
+      --bg-2:#1a0026;
+      --accent:#a855f7;
+      --accent-2:#9333ea;
+      --text:#eae6f9;
+      --header-h:64px;
+    }
 
-html, body {
-  margin:0; padding:0;
-  font-family:Inter, system-ui, sans-serif;
-  color:var(--text);
-  background: linear-gradient(135deg,var(--bg-1) 0%,var(--bg-2) 50%, #3d0066 100%);
-  min-height:100vh;
-}
+    html, body {
+      margin:0; padding:0;
+      font-family:Inter, system-ui, sans-serif;
+      color:var(--text);
+      background: linear-gradient(135deg,var(--bg-1) 0%,var(--bg-2) 50%, #3d0066 100%);
+      min-height:100vh;
+    }
 
-header {
-  position:sticky; top:0; z-index:100;
-  display:flex; justify-content:space-between; align-items:center;
-  height:var(--header-h); padding:0 20px;
-  backdrop-filter: blur(6px);
-  background: rgba(10,6,12,0.3);
-  border-bottom:1px solid rgba(168,85,247,0.1);
-}
+    header {
+      position:sticky; top:0; z-index:100;
+      display:flex; justify-content:space-between; align-items:center;
+      height:var(--header-h); padding:0 20px;
+      backdrop-filter: blur(6px);
+      background: rgba(10,6,12,0.3);
+      border-bottom:1px solid rgba(168,85,247,0.1);
+    }
 
-nav a {
-  padding:8px 14px; border-radius:8px;
-  color:var(--text); text-decoration:none; font-weight:600;
-  transition: all .2s;
-  margin-left:8px;
-  cursor:pointer;
-}
+    nav a {
+      padding:8px 14px; border-radius:8px;
+      color:var(--text); text-decoration:none; font-weight:600;
+      transition: all .2s;
+      margin-left:8px;
+    }
 
-nav a:hover { background:rgba(168,85,247,0.2); }
-nav a.active { background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#fff; }
+    nav a:hover { background:rgba(168,85,247,0.2); }
+    nav a.active { background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#fff; }
 
-main {
-  padding:20px;
-  padding-top:calc(var(--header-h)+20px);
-  max-width:1200px;
-  margin:0 auto;
-}
+    main {
+      padding:20px;
+      padding-top:calc(var(--header-h)+20px);
+      max-width:1200px;
+      margin:0 auto;
+    }
 
-h1 {
-  text-align:center;
-  background:linear-gradient(90deg,var(--accent),var(--accent-2));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  margin-bottom:20px;
-}
+    h1 {
+      text-align:center;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      margin-bottom:20px;
+    }
 
-/* Układ playerów */
-.player-wrap {
-  width:100%;
-  height:70vh;
-  border-radius:12px;
-  overflow:hidden;
-  background:#000;
-  margin-bottom:20px;
-  display:none; /* ukryte domyślnie, JS pokaże wybrany */
-}
+    /* Kontener dla dwóch playerów obok siebie */
+    .players-row {
+      display:flex;
+      gap:20px;
+      justify-content:center;
+      flex-wrap: wrap;
+      margin-bottom:20px;
+    }
 
-.player-wrap iframe {
-  width:100%;
-  height:100%;
-  border:0;
-}
+    .player-wrap {
+      width:49%;
+      height:50vh;
+      border-radius:12px;
+      overflow:hidden;
+      background:#000;
+    }
 
-/* OKIENKO FLASHSCORE */
-.flashcore-box {
-  position: fixed;
-  top:50%;
-  right:0;
-  transform: translateY(-50%);
-  width:140px;
-  background: var(--accent);
-  color:#fff;
-  padding:12px;
-  border-radius:8px 0 0 8px;
-  text-align:center;
-  box-shadow: -2px 2px 10px rgba(0,0,0,0.3);
-  transition: all 0.3s ease;
-  cursor: pointer;
-  z-index: 999;
-}
+    .player-wrap iframe {
+      width:100%;
+      height:100%;
+      border:0;
+    }
 
-.flashcore-box:hover {
-  right:10px;
-  background: var(--accent-2);
-  transform: translateY(-50%) scale(1.05);
-}
+    /* OKIENKO FLASHSCORE */
+    .flashcore-box {
+      position: fixed;
+      top:50%;
+      right:0;
+      transform: translateY(-50%);
+      width:140px;
+      background: var(--accent);
+      color:#fff;
+      padding:12px;
+      border-radius:8px 0 0 8px;
+      text-align:center;
+      box-shadow: -2px 2px 10px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      z-index: 999;
+    }
 
-.flashcore-box a {
-  color:#fff;
-  text-decoration:none;
-  font-weight:bold;
-}
+    .flashcore-box:hover {
+      right:10px;
+      background: var(--accent-2);
+      transform: translateY(-50%) scale(1.05);
+    }
 
-/* RESPONSYWNOŚĆ */
-@media (max-width: 1024px) {
-  .player-wrap { height:60vh; }
-  header { flex-direction: column; height:auto; padding:10px; }
-  nav { margin-top:8px; }
-}
+    .flashcore-box a {
+      color:#fff;
+      text-decoration:none;
+      font-weight:bold;
+    }
 
-@media (max-width: 768px) {
-  .player-wrap { height:50vh; }
-  nav a { padding:6px 10px; font-size:14px; margin-left:4px; }
-}
+    /* RESPONSYWNOŚĆ */
+    @media (max-width: 1024px) {
+      .player-wrap { height:45vh; }
+      header { flex-direction: column; height:auto; padding:10px; }
+      nav { margin-top:8px; }
+    }
 
-@media (max-width: 480px) {
-  h1 { font-size:1.5rem; }
-  .player-wrap { height:40vh; }
-  nav a { display:block; margin:4px 0; }
-  .flashcore-box { display:none; }
-}
-</style>
+    @media (max-width: 768px) {
+      .player-wrap { width:100%; height:40vh; }
+      nav a { padding:6px 10px; font-size:14px; margin-left:4px; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size:1.5rem; }
+      .player-wrap { width:100%; height:35vh; margin-bottom:15px; }
+      nav a { display:block; margin:4px 0; }
+      .flashcore-box { display:none; }
+    }
+  </style>
 </head>
 <body>
-<header>
-  <div style="font-weight:700;">wStream</div>
-  <nav>
-    <a id="nav1">Stream 1</a>
-    <a id="nav2">Stream 2</a>
-    <a id="nav3">Stream 3</a>
-  </nav>
-</header>
+  <header>
+    <div style="font-weight:700;">wStream</div>
+    <nav>
+      <a id="nav1" href="index.html">Stream 1</a>
+      <a id="nav2" href="stream2.html">Stream 2</a>
+      <a id="nav3" href="stream3.html">Stream 3</a>
+    </nav>
+  </header>
 
-<main>
-  <h1>🎬 wStream</h1>
+  <main>
+    <h1>🎬 wStream 3</h1>
 
-  <div id="stream1" class="player-wrap">
-    <iframe src="https://strumyk.net/embed/112" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
-  </div>
-
-  <div id="stream2" class="player-wrap">
-    <iframe src="https://strumyk.net/embed/113" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
-  </div>
-
-  <div id="stream3" class="player-wrap">
-    <div style="display:flex; gap:20px; flex-wrap:wrap;">
-      <div style="width:49%; height:50vh; border-radius:12px; overflow:hidden; background:#000;">
-        <iframe src="https://strumyk.net/embed/114" allow="encrypted-media; picture-in-picture" allowfullscreen style="width:100%; height:100%; border:0;"></iframe>
+    <div class="players-row">
+      <div class="player-wrap">
+        <iframe src="https://strumyk.net/embed/114"
+          allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
       </div>
-      <div style="width:49%; height:50vh; border-radius:12px; overflow:hidden; background:#000;">
-        <iframe src="https://strumyk.net/embed/115" allow="encrypted-media; picture-in-picture" allowfullscreen style="width:100%; height:100%; border:0;"></iframe>
+      <div class="player-wrap">
+        <iframe src="https://strumyk.net/embed/115"
+          allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
+  </main>
+
+  <!-- OKIENKO FLASHSCORE -->
+  <div class="flashcore-box">
+    <a href="https://www.flashscore.pl/" target="_blank">Flashscore</a>
   </div>
 
-</main>
-
-<!-- OKIENKO FLASHSCORE -->
-<div class="flashcore-box">
-  <a href="https://www.flashscore.pl/" target="_blank">Flashscore</a>
-</div>
-
-<script>
-const streams = {
-  nav1: 'stream1',
-  nav2: 'stream2',
-  nav3: 'stream3'
-};
-
-function showStream(id) {
-  for (let key in streams) {
-    document.getElementById(streams[key]).style.display = 'none';
-    document.getElementById(key).classList.remove('active');
-  }
-  document.getElementById(id).classList.add('active');
-  document.getElementById(streams[id]).style.display = 'block';
-}
-
-// Pokazujemy domyślnie Stream 1
-showStream('nav1');
-
-// Dodajemy kliknięcia w menu
-for (let key in streams) {
-  document.getElementById(key).addEventListener('click', () => showStream(key));
-}
-</script>
+  <script>
+    document.getElementById('nav3').classList.add('active');
+  </script>
 </body>
 </html>
