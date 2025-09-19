@@ -70,7 +70,8 @@
       height:100%;
       border:0;
     }
-     /* OKIENKO FLASHSCORE */
+
+    /* OKIENKO FLASHSCORE */
     .flashcore-box {
       position: fixed;
       top:50%;
@@ -100,6 +101,7 @@
       font-weight:bold;
     }
 
+    /* RESPONSYWNOŚĆ */
     @media (max-width: 1024px) {
       .player-wrap { height:60vh; }
       header { flex-direction: column; height:auto; padding:10px; }
@@ -115,6 +117,7 @@
       h1 { font-size:1.5rem; }
       .player-wrap { height:40vh; }
       nav a { display:block; margin:4px 0; }
+      .flashcore-box { display:none; } /* schowaj okienko na małych ekranach */
     }
   </style>
 </head>
@@ -130,7 +133,7 @@
   <main>
     <h1>🎬 wStream 2</h1>
     <div class="player-wrap">
-      <iframe id="player" src="https://strumyk.net/embed/796"
+      <iframe id="player" src="https://strumyk.net/embed/134"
         allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
     </div>
   </main>
@@ -139,12 +142,9 @@
   <div class="flashcore-box">
     <a href="https://www.flashscore.pl/" target="_blank">Flashscore</a>
   </div>
-  
+
   <script>
     document.getElementById('nav2').classList.add('active');
   </script>
 </body>
 </html>
-
-
-
