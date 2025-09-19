@@ -14,212 +14,49 @@
       --text:#eae6f9;
       --header-h:64px;
     }
+    html, body { margin:0; padding:0; font-family:Inter,system-ui,sans-serif; color:var(--text); background: linear-gradient(135deg,var(--bg-1) 0%,var(--bg-2) 50%, #3d0066 100%); min-height:100vh; }
+    header { position:sticky; top:0; z-index:100; display:flex; justify-content:space-between; align-items:center; height:var(--header-h); padding:0 20px; backdrop-filter: blur(6px); background: rgba(10,6,12,0.3); border-bottom:1px solid rgba(168,85,247,0.1); }
+    nav a { padding:8px 14px; border-radius:8px; color:var(--text); text-decoration:none; font-weight:600; transition: all .2s; margin-left:8px; }
+    nav a:hover { background:rgba(168,85,247,0.2); } nav a.active { background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#fff; }
+    main { padding:20px; padding-top:calc(var(--header-h)+20px); max-width:1200px; margin:0 auto; }
+    h1 { text-align:center; background:linear-gradient(90deg,var(--accent),var(--accent-2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:20px; }
+    .player-wrap { width:100%; height:70vh; border-radius:12px; overflow:hidden; background:#000; }
+    .player-wrap iframe { width:100%; height:100%; border:0; }
+    .flashcore-box { position: fixed; top:50%; right:0; transform: translateY(-50%); width:140px; background: var(--accent); color:#fff; padding:12px; border-radius:8px 0 0 8px; text-align:center; box-shadow: -2px 2px 10px rgba(0,0,0,0.3); transition: all 0.3s ease; cursor: pointer; z-index: 999; }
+    .flashcore-box:hover { right:10px; background: var(--accent-2); transform: translateY(-50%) scale(1.05); } .flashcore-box a { color:#fff; text-decoration:none; font-weight:bold; }
+    @media (max-width: 1024px) { .player-wrap { height:60vh; } header { flex-direction: column; height:auto; padding:10px; } nav { margin-top:8px; } }
+    @media (max-width: 768px) { .player-wrap { height:50vh; } nav a { padding:6px 10px; font-size:14px; margin-left:4px; } }
+    @media (max-width: 480px) { h1 { font-size:1.5rem; } .player-wrap { height:40vh; } nav a { display:block; margin:4px 0; } .flashcore-box { display:none; } }
 
-    /* --- PAGE STYLES (Twoje oryginalne) --- */
-    html, body {
-      margin:0; padding:0;
-      font-family:Inter, system-ui, sans-serif;
-      color:var(--text);
-      background: linear-gradient(135deg,var(--bg-1) 0%,var(--bg-2) 50%, #3d0066 100%);
-      min-height:100vh;
-    }
-
-    header {
-      position:sticky; top:0; z-index:100;
-      display:flex; justify-content:space-between; align-items:center;
-      height:var(--header-h); padding:0 20px;
-      backdrop-filter: blur(6px);
-      background: rgba(10,6,12,0.3);
-      border-bottom:1px solid rgba(168,85,247,0.1);
-    }
-
-    nav a {
-      padding:8px 14px; border-radius:8px;
-      color:var(--text); text-decoration:none; font-weight:600;
-      transition: all .2s;
-      margin-left:8px;
-    }
-
-    nav a:hover { background:rgba(168,85,247,0.2); }
-    nav a.active { background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#fff; }
-
-    main {
-      padding:20px;
-      padding-top:calc(var(--header-h)+20px);
-      max-width:1200px;
-      margin:0 auto;
-    }
-
-    h1 {
-      text-align:center;
-      background:linear-gradient(90deg,var(--accent),var(--accent-2));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      margin-bottom:20px;
-    }
-
-    .player-wrap {
-      width:100%;
-      height:70vh;
-      border-radius:12px;
-      overflow:hidden;
-      background:#000;
-    }
-
-    .player-wrap iframe {
-      width:100%;
-      height:100%;
-      border:0;
-    }
-
-    /* OKIENKO FLASHSCORE (Twoje) */
-    .flashcore-box {
-      position: fixed;
-      top:50%;
-      right:0;
-      transform: translateY(-50%);
-      width:140px;
-      background: var(--accent);
-      color:#fff;
-      padding:12px;
-      border-radius:8px 0 0 8px;
-      text-align:center;
-      box-shadow: -2px 2px 10px rgba(0,0,0,0.3);
-      transition: all 0.3s ease;
-      cursor: pointer;
-      z-index: 999;
-    }
-    .flashcore-box:hover { right:10px; background: var(--accent-2); transform: translateY(-50%) scale(1.05); }
-    .flashcore-box a { color:#fff; text-decoration:none; font-weight:bold; }
-
-    /* RESPONSYWNOŚĆ (Twoje) */
-    @media (max-width: 1024px) {
-      .player-wrap { height:60vh; }
-      header { flex-direction: column; height:auto; padding:10px; }
-      nav { margin-top:8px; }
-    }
-    @media (max-width: 768px) {
-      .player-wrap { height:50vh; }
-      nav a { padding:6px 10px; font-size:14px; margin-left:4px; }
-    }
-    @media (max-width: 480px) {
-      h1 { font-size:1.5rem; }
-      .player-wrap { height:40vh; }
-      nav a { display:block; margin:4px 0; }
-      .flashcore-box { display:none; }
-    }
-
-    /* --- INTRO OVERLAY STYLES (wklejona animacja + płynne przejście) --- */
-    #intro {
-      position:fixed;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:linear-gradient(180deg, rgba(10,6,20,1) 0%, rgba(8,4,18,1) 100%);
-      z-index:2000;
-      overflow:hidden;
-      transition: opacity .6s ease, visibility .6s ease;
-    }
+    /* INTRO OVERLAY (animacja) */
+    #intro { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg, rgba(10,6,20,1) 0%, rgba(8,4,18,1) 100%); z-index:2000; overflow:hidden; transition: opacity .6s ease, visibility .6s ease; }
     #intro.hidden { opacity:0; visibility:hidden; pointer-events:none; }
-
-    /* canvas for particles */
     #particles { position:absolute; inset:0; pointer-events:none; }
-
-    /* smoke layers (soft purple blobs) */
-    .smoke{
-      position:absolute; width:65vmin; height:35vmin; left:50%; transform:translateX(-50%);
-      bottom:18vmin; filter:blur(28px) saturate(120%); opacity:0.85; mix-blend-mode:screen;
-      pointer-events:none;
-    }
+    .smoke{ position:absolute; width:65vmin; height:35vmin; left:50%; transform:translateX(-50%); bottom:18vmin; filter:blur(28px) saturate(120%); opacity:0.85; mix-blend-mode:screen; pointer-events:none; }
     .smoke.s1{ background: radial-gradient(closest-side, rgba(123,60,255,0.65), transparent 60%); animation:rise1 3.5s ease-out forwards; transform-origin:center; }
     .smoke.s2{ background: radial-gradient(closest-side, rgba(89,35,210,0.55), transparent 60%); bottom:15vmin; height:40vmin; animation:rise2 3.8s ease-out forwards; }
     .smoke.s3{ background: radial-gradient(closest-side, rgba(57,16,140,0.45), transparent 60%); bottom:20vmin; height:30vmin; animation:rise3 3.2s ease-out forwards; }
-
-    @keyframes rise1{
-      0%{ transform:translateX(-50%) translateY(10%) scale(0.85); opacity:0.0;}
-      25%{ opacity:0.9; }
-      100%{ transform:translateX(-50%) translateY(-24%) scale(1.05); opacity:0.45;}
-    }
-    @keyframes rise2{
-      0%{ transform:translateX(-50%) translateY(20%) scale(0.9); opacity:0;}
-      30%{ opacity:0.75;}
-      100%{ transform:translateX(-50%) translateY(-18%) scale(1.08); opacity:0.35;}
-    }
-    @keyframes rise3{
-      0%{ transform:translateX(-50%) translateY(0%) scale(0.8); opacity:0;}
-      20%{ opacity:0.8; }
-      100%{ transform:translateX(-50%) translateY(-30%) scale(1.12); opacity:0.25;}
-    }
-
-    /* logo container */
-    .logo-wrap{
-      position:relative; width:58vmin; max-width:520px; height:auto;
-      display:flex; align-items:center; justify-content:center; z-index:6;
-      filter:drop-shadow(0 8px 30px rgba(75,20,150,0.6));
-    }
-
-    .logo{
-      width:100%; transform-origin:center; will-change:transform, filter, opacity;
-      animation:logo-pop 3.2s cubic-bezier(.22,.9,.32,1) forwards;
-      opacity:0;
-    }
-
-    /* flash overlay */
-    .flash{
-      position:absolute; inset:0; z-index:7; pointer-events:none;
-      background:radial-gradient(120px 60px at 50% 42%, rgba(255,255,255,0.95), rgba(255,255,255,0.25) 15%, transparent 30%);
-      mix-blend-mode:screen; opacity:0; transform:scale(0.9);
-      animation:flash 1.0s ease 0.9s forwards;
-    }
-
-    @keyframes flash {
-      0%{ opacity:0; transform:scale(0.9) }
-      30%{ opacity:1; transform:scale(1.08) filter:blur(0.5px); }
-      100%{ opacity:0; transform:scale(1.15) }
-    }
-
-    @keyframes logo-pop {
-      0%{ opacity:0; transform:scale(0.6) translateY(6%); filter:blur(6px) drop-shadow(0 0 0 rgba(0,0,0,0)); }
-      40%{ opacity:1; transform:scale(1.08) translateY(-2%); filter:blur(0px); }
-      70%{ transform:scale(0.98) translateY(0%); }
-      100%{ transform:scale(1) translateY(0%); opacity:1; }
-    }
-
-    .glow{
-      position:absolute; left:50%; transform:translateX(-50%); bottom:2vmin;
-      width:70%; height:16vmin; border-radius:50%; background: radial-gradient(ellipse at center, rgba(123,60,255,0.25), transparent 60%); z-index:3;
-      filter:blur(20px); opacity:0; animation:glowIn 2.8s ease 1s forwards;
-    }
-    @keyframes glowIn{
-      0%{ opacity:0; transform:translateX(-50%) scale(0.6) }
-      60%{ opacity:0.85; transform:translateX(-50%) scale(1.05) }
-      100%{ opacity:0.7; transform:translateX(-50%) scale(1) }
-    }
-
-    /* fade-out animation helper (we trigger removal via JS) */
-    .fade-out {
-      transition: opacity 0.6s ease, transform 0.6s ease;
-      opacity:0;
-      transform: translateY(-6px) scale(0.995);
-    }
-
-    @media (max-width:520px){
-      .logo-wrap{ width:86vw; }
-      .smoke{ width:100vw; }
-    }
-
+    @keyframes rise1{ 0%{ transform:translateX(-50%) translateY(10%) scale(0.85); opacity:0.0;} 25%{ opacity:0.9; } 100%{ transform:translateX(-50%) translateY(-24%) scale(1.05); opacity:0.45;} }
+    @keyframes rise2{ 0%{ transform:translateX(-50%) translateY(20%) scale(0.9); opacity:0;} 30%{ opacity:0.75;} 100%{ transform:translateX(-50%) translateY(-18%) scale(1.08); opacity:0.35;} }
+    @keyframes rise3{ 0%{ transform:translateX(-50%) translateY(0%) scale(0.8); opacity:0;} 20%{ opacity:0.8; } 100%{ transform:translateX(-50%) translateY(-30%) scale(1.12); opacity:0.25;} }
+    .logo-wrap{ position:relative; width:58vmin; max-width:520px; height:auto; display:flex; align-items:center; justify-content:center; z-index:6; filter:drop-shadow(0 8px 30px rgba(75,20,150,0.6)); }
+    .logo{ width:100%; transform-origin:center; will-change:transform, filter, opacity; animation:logo-pop 3.2s cubic-bezier(.22,.9,.32,1) forwards; opacity:0; }
+    .flash{ position:absolute; inset:0; z-index:7; pointer-events:none; background:radial-gradient(120px 60px at 50% 42%, rgba(255,255,255,0.95), rgba(255,255,255,0.25) 15%, transparent 30%); mix-blend-mode:screen; opacity:0; transform:scale(0.9); animation:flash 1.0s ease 0.9s forwards; }
+    @keyframes flash { 0%{ opacity:0; transform:scale(0.9) } 30%{ opacity:1; transform:scale(1.08) filter:blur(0.5px); } 100%{ opacity:0; transform:scale(1.15) } }
+    @keyframes logo-pop { 0%{ opacity:0; transform:scale(0.6) translateY(6%); filter:blur(6px) } 40%{ opacity:1; transform:scale(1.08) translateY(-2%); filter:blur(0px); } 70%{ transform:scale(0.98) translateY(0%); } 100%{ transform:scale(1) translateY(0%); opacity:1; } }
+    .glow{ position:absolute; left:50%; transform:translateX(-50%); bottom:2vmin; width:70%; height:16vmin; border-radius:50%; background: radial-gradient(ellipse at center, rgba(123,60,255,0.25), transparent 60%); z-index:3; filter:blur(20px); opacity:0; animation:glowIn 2.8s ease 1s forwards; }
+    @keyframes glowIn{ 0%{ opacity:0; transform:translateX(-50%) scale(0.6) } 60%{ opacity:0.85; transform:translateX(-50%) scale(1.05) } 100%{ opacity:0.7; transform:translateX(-50%) scale(1) } }
+    .fade-out { transition: opacity 0.6s ease, transform 0.6s ease; opacity:0; transform: translateY(-6px) scale(0.995); }
+    @media (max-width:520px){ .logo-wrap{ width:86vw; } .smoke{ width:100vw; } }
   </style>
 </head>
 <body>
-  <!-- INTRO OVERLAY (animacja) -->
-  <div id="intro">
+  <!-- INTRO OVERLAY -->
+  <div id="intro" aria-hidden="false">
     <canvas id="particles"></canvas>
-
     <div class="smoke s1"></div>
     <div class="smoke s2"></div>
     <div class="smoke s3"></div>
-
     <div class="logo-wrap">
       <img class="logo" id="logoImg" src="wstream.png" alt="wStream logo" />
       <div class="flash" id="flash"></div>
@@ -227,7 +64,7 @@
     </div>
   </div>
 
-  <!-- GŁÓWNA ZAWARTOŚĆ STRONY -->
+  <!-- GŁÓWNA ZAWARTOŚĆ -->
   <header>
     <div style="font-weight:700;">wStream</div>
     <nav>
@@ -241,8 +78,7 @@
   <main>
     <h1>🎬 wStream 1</h1>
     <div class="player-wrap">
-      <iframe id="player" src="https://strumyk.net/embed/112"
-        allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      <iframe id="player" src="https://strumyk.net/embed/112" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
     </div>
   </main>
 
@@ -250,129 +86,108 @@
     <a href="https://www.flashscore.pl/" target="_blank">Flashscore</a>
   </div>
 
-  <!-- opcjonalne audio intro (wrzuć plik 'wane_intro.mp3' jeśli chcesz dźwięk) -->
+  <!-- opcjonalny plik audio intro: wgraj wane_intro.mp3 obok tego pliku -->
   <audio id="introAudio" src="wane_intro.mp3" preload="auto"></audio>
 
   <script>
-  /***** PARTICLES + SMOKE (Twoja oryginalna animacja) *****/
   (function(){
+    /* particles (oryginalny kod) */
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
     let W = canvas.width = innerWidth;
     let H = canvas.height = innerHeight;
     const particles = [];
     const PARTICLE_COUNT = 60;
-
     function rand(min, max){ return Math.random()*(max-min)+min; }
-
     function createParticle(){
       const angle = rand(-Math.PI/2 - 0.8, -Math.PI/2 + 0.8);
       const speed = rand(0.8, 3.6);
       const size = rand(1, 3.8);
-      return {
-        x: W/2 + rand(-60,60),
-        y: H/2 + rand(50, 120),
-        vx: Math.cos(angle)*speed,
-        vy: Math.sin(angle)*speed,
-        life: rand(36, 78),
-        size,
-        hue: rand(250, 280),
-        alpha: 1
-      };
+      return { x: W/2 + rand(-60,60), y: H/2 + rand(50, 120), vx: Math.cos(angle)*speed, vy: Math.sin(angle)*speed, life: rand(36, 78), size, hue: rand(250, 280), alpha: 1 };
     }
-
-    function spawnParticles(n){
-      for(let i=0;i<n;i++) particles.push(createParticle());
-    }
-
+    function spawnParticles(n){ for(let i=0;i<n;i++) particles.push(createParticle()); }
     setTimeout(()=> spawnParticles(PARTICLE_COUNT), 900);
     setTimeout(()=> spawnParticles(Math.floor(PARTICLE_COUNT*0.6)), 1250);
     setTimeout(()=> spawnParticles(Math.floor(PARTICLE_COUNT*0.4)), 1700);
-
     function tick(){
       ctx.clearRect(0,0,W,H);
       for (let i = particles.length-1; i >= 0; i--){
         const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vx *= 0.985;
-        p.vy += 0.02;
-        p.life--;
-        p.alpha = Math.max(0, p.life / 80);
-
+        p.x += p.vx; p.y += p.vy; p.vx *= 0.985; p.vy += 0.02; p.life--; p.alpha = Math.max(0, p.life / 80);
         const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size*8);
         g.addColorStop(0, `hsla(${p.hue},95%,70%,${0.95*p.alpha})`);
         g.addColorStop(0.2, `hsla(${p.hue},85%,60%,${0.6*p.alpha})`);
         g.addColorStop(1, `rgba(0,0,0,0)`);
-        ctx.fillStyle = g;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size*6, 0, Math.PI*2);
-        ctx.fill();
-
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(p.x, p.y, p.size*6, 0, Math.PI*2); ctx.fill();
         if (p.life <= 0 || p.y > H + 30) particles.splice(i,1);
       }
       requestAnimationFrame(tick);
     }
     tick();
+    window.addEventListener('resize', () => { W = canvas.width = innerWidth; H = canvas.height = innerHeight; });
 
-    window.addEventListener('resize', () => {
-      W = canvas.width = innerWidth;
-      H = canvas.height = innerHeight;
-    });
-
-    /* INTRO TIMING & TRANSITION */
+    /* ===== LOGIKA: show intro ONLY when user LANDS from outside origin (or ?intro=1) ===== */
     const introEl = document.getElementById('intro');
     const audio = document.getElementById('introAudio');
 
-    // Prevent page scroll while intro visible
+    // prevent scroll while overlay visible (we remove this when overlay is removed)
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
 
-    // Try to play intro audio (best-effort). If blocked, ignore.
-    (async function tryPlayAudio(){
-      if(!audio) return;
-      try {
-        // try unmuted first
-        audio.muted = false;
-        await audio.play();
-      } catch(e) {
-        // fallback: try muted autoplay (most browsers allow muted autoplay)
-        try {
-          audio.muted = true;
-          await audio.play();
-          // we leave it muted; user can unmute later if needed
-        } catch(e2) {
-          // cannot autoplay - ignore (no blocking of animation)
-          // optional: you could show a "Click to enable sound" button here
-        }
-      }
-    })();
-
-    // After animation time (3.6s) fade overlay and then remove it
-    const AUTO_HIDE_MS = 3600; // match your animation length
-    setTimeout(()=> {
-      // fade out
+    function removeIntro() {
+      if (!introEl) return;
       introEl.classList.add('fade-out');
       introEl.style.opacity = '0';
-      // small delay to let CSS transition run (0.6s)
       setTimeout(()=> {
-        // remove element from DOM and re-enable scrolling
-        try {
-          introEl.parentNode && introEl.parentNode.removeChild(introEl);
-        } catch(e){}
+        try { introEl.parentNode && introEl.parentNode.removeChild(introEl); } catch(e){}
         document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
-        // if audio is muted and playing, you may optionally pause it:
-        // audio.pause(); audio.currentTime = 0;
       }, 620);
-    }, AUTO_HIDE_MS);
+    }
+
+    function urlForcesIntro() {
+      try { const params = new URLSearchParams(window.location.search); return params.get('intro') === '1'; } catch(e){ return false; }
+    }
+
+    // check referrer origin: if referrer is absent or from a different origin -> treat as external landing
+    function isExternalLanding() {
+      const ref = document.referrer || '';
+      if (!ref) return true; // typed URL/bookmark/search engine -> external landing
+      try {
+        const refOrigin = (new URL(ref)).origin;
+        return refOrigin !== location.origin;
+      } catch(e){
+        return true; // if parsing failed treat as external
+      }
+    }
+
+    const force = urlForcesIntro();
+    const external = isExternalLanding();
+
+    if (!external && !force) {
+      // navigation was internal (came from same site) -> skip intro immediately
+      setTimeout(()=> removeIntro(), 60);
+    } else {
+      // external landing (or forced) -> show intro
+      // try to play audio (best-effort). If blocked, try muted autoplay.
+      (async function tryPlayAudio(){
+        if(!audio) return;
+        try {
+          audio.muted = false;
+          await audio.play();
+        } catch(e) {
+          try { audio.muted = true; await audio.play(); } catch(e2){}
+        }
+      })();
+
+      // hide intro after animation length (3.6s)
+      const AUTO_HIDE_MS = 3600;
+      setTimeout(()=> removeIntro(), AUTO_HIDE_MS);
+    }
 
   })();
   </script>
 
-  <script>
-    // highlight active nav (index)
-    document.getElementById('nav1').classList.add('active');
-  </script>
+  <script> document.getElementById('nav1').classList.add('active'); </script>
 </body>
 </html>
